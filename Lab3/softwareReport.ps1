@@ -1,0 +1,1 @@
+get-wmiobject -class win32_product -filter "vendor!='Microsoft Corporation'" | sort-object installdate | format-table name, vendor, version, installdate

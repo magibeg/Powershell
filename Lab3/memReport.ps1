@@ -1,0 +1,1 @@
+get-wmiobject -class win32_physicalmemory | format-table manufacturer, @{n="capacity (MB)"; e={$_.capacity/1MB -as [int]}}, banklabel, devicelocator
