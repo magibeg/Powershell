@@ -62,7 +62,7 @@ ForEach-Object {
     new-object -TypeName psobject -Property @{
         Manufacturer = $_.Description
         Model = $_.Model
-        Size = [math]::Round($_.Size/1GB)
+        Size = $_.Size/1GB
     }
 } | Format-Table -AutoSize Manufacturer, Model, Size
 
