@@ -47,7 +47,7 @@ $MemInfo = get-wmiobject -class win32_physicalmemory |
 ForEach-Object {
     new-object -TypeName psobject -Property @{
         Manufacturer = $_.manufacturer;
-        Size = $_.capacity/1MB;
+        Size = [math]::Round($_.capacity/1MB,2);
         Bank = $_.banklabel;
         Slot = $_.DeviceLocator;
     };
@@ -62,7 +62,7 @@ ForEach-Object {
     new-object -TypeName psobject -Property @{
         Manufacturer = $_.Description
         Model = $_.Model
-        Size = $_.Size/1GB
+        Size = [math]::Round($_.Size/1GB,2);
     }
 } | Format-Table -AutoSize Manufacturer, Model, Size
 
@@ -72,8 +72,8 @@ ForEach-Object {
     new-object -TypeName psobject -Property @{
         Drive = $_.Caption
         "File System Type" = $_.FileSystem
-        "Size (GB)" = $_.Size/1GB
-        "Free Space (GB)" = $_.FreeSpace/1GB
+        "Size (GB)" = [math]::Round($_.Size/1GB,2);
+        "Free Space (GB)" = [math]::Round($_.FreeSpace/1GB,2);
     }
 } | Format-Table -AutoSize Drive, "File System Type", "Size (GB)", "Free Space (GB)"
 
